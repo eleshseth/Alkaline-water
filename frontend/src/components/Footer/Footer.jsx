@@ -8,12 +8,13 @@ const Footer = () => {
     <footer className='footer'>
       <div className='footer-content'>
         <div className='footer-section company-info'>
-          <img src={assets.logo} alt='TLO Food Chain' className='footer-logo' />
+          {/* <img src={assets.logo} alt='TLO Food Chain' className='footer-logo' /> */}
           <p className='company-description'>
-            TLO FOOD CHAIN (Top Level Organisation) has been crafting
-            handcrafted momos since 2022. We cater to HORECA distributors, QSR
-            chains, B2B brands, and B2C customers, delivering high-quality
-            products.
+            SB ENTERPRISE has been producing premium alkaline water since 2022.
+            We proudly serve HORECA distributors, wellness-focused QSR chains,
+            B2B brands, and health-conscious B2C customers. Our commitment to
+            purity and wellness ensures every bottle delivers hydration with a
+            purpose.
           </p>
           <div className='footer-social'>
             <a href='https://facebook.com' target='_blank'>
@@ -69,7 +70,7 @@ const Footer = () => {
 
         <div className='footer-section business-info'>
           <h3>Business Info</h3>
-          <p>GST No: 07AJHPB2058B1ZU</p>
+          <p>GST No: 09AHPPP9337B1ZX</p>
           <p>Operating Hours: 10:00 AM - 10:00 PM</p>
           <p>All days including weekends</p>
         </div>

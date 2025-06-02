@@ -18,8 +18,8 @@
 .subheading{
 font-family: 'MuseoSans', sans-serif;
 text-align: center;
-margin-top: 15px;
-margin-bottom: 50px;
+margin-top: 10x;
+
 color: black;
 font-size: 18px;
 
@@ -27,7 +27,7 @@ font-size: 18px;
 
 }
 .healthy-water-list-container {
-  margin-top: 45px;
+  margin-top: 30px;
   display: flex;
   justify-content: flex-start;
   padding:  0 20px;
