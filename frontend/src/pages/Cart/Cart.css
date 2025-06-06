@@ -1,5 +1,10 @@
 .cart {
   margin-top: 100px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: auto;
 }
 .cart-item-title {
   display: grid;
@@ -24,7 +29,7 @@
 }
 .cart-items-item .cross {
   cursor: pointer;
-  color: tomato;
+  color: #41c21a;
 }
 
 .cart-bottom {
@@ -51,7 +56,7 @@
 }
 .cart-total button {
   padding: 12px 0px;
-  background-color: tomato;
+  background-color: #41c21a;
   color: white;
   border: none;
   border-radius: 5px;
@@ -60,7 +65,7 @@
   width: max(15vw, 200px);
 }
 .cart-total button:hover {
-  background-color: #ff7b5a;
+  background-color: #217a06;
 }
 .quantity-controls {
   display: flex;

@@ -17,6 +17,10 @@ import Shipping from './pages/Shipping/Shipping.jsx';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Cancellation from './pages/Cancellation/cancellation.jsx';  // Add this import at the top
+import Alkanity from './pages/Alkanity/Alkanity';
+import Origin from './pages/Origin/Origin';
+import Menu from './pages/Menu/Menu';
+import Sustainability from './pages/Sustainability/Sustainability';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -27,8 +31,16 @@ const App = () => {
     const storedUserData = localStorage.getItem('userData');
     
     if (storedToken && storedUserData) {
-      setToken(storedToken);
-      setUserData(JSON.parse(storedUserData));
+      try {
+        setToken(storedToken);
+        const parsedUserData = JSON.parse(storedUserData);
+        setUserData(parsedUserData);
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        // Clear invalid data from localStorage
+        localStorage.removeItem('userData');
+        localStorage.removeItem('token');
+      }
     }
   }, []);
 
@@ -38,6 +50,8 @@ const App = () => {
         <Navbar setShowLogin={setShowLogin} showLogin={showLogin} />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/sustainability' element={<Sustainability />} />
+          <Route path='/menu' element={<Menu />} />
           <Route
             path='/cart'
             element={
@@ -55,6 +69,8 @@ const App = () => {
           <Route path='/cancellation' element={<Cancellation />} /> {/* Add this route */}
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/reset-password/:token' element={<ResetPassword />} /> {/* Add this line */}
+          <Route path='/alkanity' element={<Alkanity />} />
+          <Route path="/origin" element={<Origin />} />
         </Routes>
       </div>
       <Footer />

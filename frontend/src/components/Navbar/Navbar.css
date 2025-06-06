@@ -14,7 +14,9 @@
      font-family: 'MuseoSans', sans-serif;
 
 
-
+.navbar-logo{
+  width: 200px;
+}
 }
 .navbar-menu {
   display: flex;
@@ -32,17 +34,17 @@
   gap: 40px;
 }
 .navbar button {
-  background-color: #1ca4ff;
+  background-color: #41c21a;
   font-size: 16px;
-  color: rgb(255, 255, 255);
-  border: 2px solid #41c21a;
+  color: rgb(0, 0, 0);
+  border: 2px solid #1ca4ff;
   padding: 10px 30px;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
 }
 .navbar button:hover {
-  background-color: #e23926;
+  background-color: #2c8b0f;
   color: white;
 }
 .navbar .active {
@@ -300,4 +302,21 @@
   .hamburger-menu.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
+}
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 750px) {
+    .navbar-logo {
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-logo {
+        height: 20px;
+    }
 }

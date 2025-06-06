@@ -11,7 +11,7 @@
 
 .contact-left h2 {
   font-size: 2.5rem;
-  color: #ff0000;
+  color: #41c21a;
   margin-bottom: 20px;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .contact-right button {
-  background: #ff0000;
+  background: #41c21a;
   color: white;
   padding: 12px 30px;
   border: none;
@@ -103,7 +103,7 @@
 }
 
 .contact-right button:hover {
-  background: #dd0000;
+  background: #3a9e15;
 }
 
 @media (max-width: 768px) {

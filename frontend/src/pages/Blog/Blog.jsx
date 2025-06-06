@@ -204,7 +204,7 @@ Whether lunch, dinner, or that weird hunger, cease googling craving momos around
 
   return (
     <div className="blog-container">
-      <h1>Our Food Blog</h1>
+      <h1>Our Alkaline Water Blogs</h1>
       <div className="blog-cards">
         {blogs.map((blog) => (
           <div key={blog.id} className="blog-card">

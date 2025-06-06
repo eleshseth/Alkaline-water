@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Contact.css';
 import { assets } from '../../assets/assets';
+import { StoreContext } from '../../context/StoreContext';
+import axios from 'axios';
 
 const Contact = () => {
+  const { url } = useContext(StoreContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,12 +13,20 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      const response = await axios.post(`${url}/api/contact/submit`, formData);
+      if (response.data.success) {
+        alert('Message sent successfully!');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('An error occurred. Please try again later.');
+    }
   };
 
   return (
@@ -30,8 +41,8 @@ const Contact = () => {
             <div>
               <h3>Address</h3>
               <p>
-                Pioneer Complex, 12/26, Plot Alpha, Sahibabad Industrial Area
-                Site 4, Sahibabad, Ghaziabad, Uttar Pradesh 201010
+                S.B enterprises, 614 Bhovapur kaushambi ghaziabad Uttar Pradesh
+                201010
               </p>
             </div>
           </div>
@@ -40,7 +51,7 @@ const Contact = () => {
             <img src={assets.mobile} alt='phone' />
             <div>
               <h3>Phone</h3>
-              <p>+91 98765 43210</p>
+              <p>+919212324909</p>
             </div>
           </div>
 
@@ -48,7 +59,7 @@ const Contact = () => {
             <img src={assets.email} alt='email' />
             <div>
               <h3>Email</h3>
-              <p>info@tlofoodchain.com</p>
+              <p>driinkOxygen@gmail.com</p>
             </div>
           </div>
         </div>

@@ -81,6 +81,24 @@ import kurkure from './kurkure.webp';
 import packing from './packing.jpg';
 import transport from './transportation.jpg';
 import Recycled from "./Recycle.jpg" 
+import Bottlebenefit from "./Bottlebenefit.jpg"
+import alkanity from "./alkanity.jpg"
+import brain  from "./brain.png";
+import bones from "./bones.png";
+import heart from "./heart.png";
+import digestion from "./digestion.png";
+import cholesterol from "./cholesterol.png";
+import hydration from "./hydration.png";
+import immunity from "./immunity.png";
+import age from "./age.png";
+import layer from './layer.jpg';
+import origin from './origin.jpg';
+import origin2 from './origin2.jpg';
+import sustain from './sustain.jpg';
+import logofinal from './logofinal.png';
+import impact from './impact.png';
+import impactmobile from './impactmobile.png';
+import originmobile from './originmobile.jpg';
 
 export const assets = {
   logo,
@@ -92,6 +110,7 @@ export const assets = {
   add_icon_white,
   remove_icon_red,
   app_store,
+  alkanity,
   play_store,
   linkedin_icon,
   facebook_icon,
@@ -121,6 +140,23 @@ export const assets = {
   blog1,
   blog3,
   Recycled,
+  Bottlebenefit,
+  heart,
+  digestion,
+  cholesterol,
+  hydration,
+  immunity,
+  age,
+  brain,
+  bones,
+  layer,
+  origin,
+  origin2,
+  sustain,
+  logofinal,
+  impact,
+  impactmobile,
+  originmobile
 };
 
 export const menu_list = [

@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://api.tlofoodchain.com/api/admin/login',
+        'http://localhost:8003/api/admin/login',
         data
       );
       
@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <div className="admin-login-container">
       <div className="admin-login-form">
-        <img src={asset.logo} alt="TLO Logo" className="admin-logo" />
+        <img src={asset.logofinal} alt="TLO Logo" className="admin-logo" />
         <h2>Admin Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

@@ -22,16 +22,17 @@
   
 }
 .header-contents h2 {
-  font-weight: 500;
+  font-weight: 700;
   color: #41c21a;
   font-size: max(4vw, 22px);
    font-family: 'MuseoSans', sans-serif;
 
 }
 .header-contents p {
-  color: rgb(34, 179, 223);
-  font-size: 1vw;
+  color: rgb(255, 255, 255);
+  font-size: 1.2vw;
      font-family: 'MuseoSans', sans-serif;
+     text-shadow: black 1px 1px 1px;
 
 }
 .header-contents button {
@@ -40,7 +41,7 @@
   font-weight: 500;
   padding: 1vw 2.3vw;
   background-color: #41c21a;
-  font-size: max(1vw, 13px);
+  font-size: max(1.5vw, 13px);
   border-radius: 50px;
      font-family: 'MuseoSans', sans-serif;
 

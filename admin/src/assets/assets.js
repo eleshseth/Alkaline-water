@@ -21,6 +21,7 @@ import basket_icon from './basket_icon.png';
 import cross_icon from './cross_icon.png';
 import facebook_icon from './facebook_icon.png';
 import upload_area from './upload_area.jpeg';
+import logofinal from './logofinal.png';
 
 export const asset = {
  upload_area,
@@ -45,5 +46,6 @@ export const asset = {
  bag_icon,
  basket_icon,
  cross_icon,
- facebook_icon
+ facebook_icon,
+ logofinal
 };

@@ -47,7 +47,7 @@ animation:fadeIn 0.5s;
 
 .login-popup-container button{
  padding: 10px;
- background-color: tomato;
+ background-color: #41c21a;
  color: white;
  border: none;
  border-radius: 5px;
@@ -66,6 +66,6 @@ animation:fadeIn 0.5s;
 }
 .login-popup p span{
  font-weight: 500;
- color: tomato;
+ color: #41c21a;
  cursor: pointer;
 }

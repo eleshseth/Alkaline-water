@@ -32,11 +32,20 @@ const Navbar = ({ setShowLogin, showLogin }) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleMenuClick = () => {
+    setMenu('menu');
+    setIsMobileMenuOpen(false);
+    const foodDisplay = document.getElementById('food-display');
+    if (foodDisplay) {
+      foodDisplay.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className='navbar'>
-      <Link to='/'>
-        <h1 className='logo'>AlkalineWater</h1>
-      </Link>
+    
+        <img src={assets.logofinal} alt="Alkaline Water Logo"  className='navbar-logo' />
+    
 
       <div className='hamburger-menu' onClick={toggleMobileMenu}>
         <span></span>
@@ -54,15 +63,15 @@ const Navbar = ({ setShowLogin, showLogin }) => {
           className={menu === 'home' ? 'active' : ''}>
           HOME
         </Link>
-        <a
-          href='#explore-menu'
+        <Link
+          to='/menu'
           onClick={() => {
             setMenu('menu');
             setIsMobileMenuOpen(false);
           }}
           className={menu === 'menu' ? 'active' : ''}>
           MENU
-        </a>
+        </Link>
         <Link
           to='/alkanity'
           onClick={() => {
@@ -90,7 +99,7 @@ const Navbar = ({ setShowLogin, showLogin }) => {
           className={menu === 'origin' ? 'active' : ''}>
           ORIGIN
         </Link>
-        <Link
+        {/* <Link
           to='/blog'
           onClick={() => {
             setMenu('blog');
@@ -98,7 +107,7 @@ const Navbar = ({ setShowLogin, showLogin }) => {
           }}
           className={menu === 'blog' ? 'active' : ''}>
           BLOG
-        </Link>
+        </Link> */}
         <Link
           to='/contact'
           onClick={() => {

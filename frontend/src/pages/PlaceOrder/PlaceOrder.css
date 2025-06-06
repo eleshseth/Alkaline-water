@@ -1,9 +1,10 @@
 .place-order{
     display: flex;
-    align-items: start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content:space-around;
     margin-top: 100px;
     gap: 50px ;
+    
    }
   .place-order-left {
    width: 100%;
@@ -20,7 +21,7 @@
  padding: 10px;
  border: 1px solid #ccc;
  border-radius: 5px;
- outline-color: red ;
+ outline-color: #28a745 ;
 }
 .place-order-left .multi-fields{
   display: flex;
@@ -51,7 +52,7 @@
 }
 
 .payment-buttons button:first-child {
-  background-color: #F37254;
+  background-color: #28a745;
   color: white;
 }
 

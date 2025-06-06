@@ -12,8 +12,8 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   const location = useLocation();
-  const url = 'https://api.tlofoodchain.com';
-  //const url = 'http://localhost:8003';
+  // const url = 'https://api.tlofoodchain.com';
+  const url = 'http://localhost:8003';
 
   const isLoginPage = location.pathname === '/';
 
