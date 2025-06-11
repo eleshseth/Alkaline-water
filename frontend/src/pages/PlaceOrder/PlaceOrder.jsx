@@ -284,7 +284,7 @@ const PlaceOrder = () => {
             <p>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 50}</p>
           </div>
           <hr />
-          <button type='submit'>PROCEED TO PAYMENT</button>
+          {/* <button type='submit'>PROCEED TO PAYMENT</button> */}
           <button onClick={handleCodOrder}>PROCEED VIA COD</button>
         </div>
       </div>
