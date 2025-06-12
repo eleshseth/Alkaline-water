@@ -1,5 +1,5 @@
 import cloudinary from '../config/cloudinary.js';
-import foodModel from '../models/foodmodel.js';
+import foodModel from '../models/foodModel.js';
 
 const addFood = async (req, res) => {
   try {
@@ -8,9 +8,9 @@ const addFood = async (req, res) => {
       transformation: [
         { width: 500, height: 500, crop: 'fill' },
         { quality: 'auto' },
-        { fetch_format: 'auto' }
+        { fetch_format: 'auto' },
       ],
-      resource_type: 'auto'
+      resource_type: 'auto',
     });
 
     const food = new foodModel({
@@ -20,14 +20,14 @@ const addFood = async (req, res) => {
       category: req.body.category,
       stock: req.body.stock, // Add stock field
       image: result.secure_url,
-      cloudinary_id: result.public_id
+      cloudinary_id: result.public_id,
     });
 
     const savedFood = await food.save();
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'food added',
-      data: savedFood
+      data: savedFood,
     });
   } catch (error) {
     console.log(error);
@@ -38,7 +38,7 @@ const addFood = async (req, res) => {
 const updateFood = async (req, res) => {
   try {
     const { id, name, price, category, description, stock } = req.body; // Add stock to destructuring
-    
+
     const updatedFood = await foodModel.findByIdAndUpdate(
       id,
       { name, price, category, description, stock }, // Add stock to update
@@ -49,10 +49,10 @@ const updateFood = async (req, res) => {
       return res.json({ success: false, message: 'Food item not found' });
     }
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'Food item updated successfully',
-      data: updatedFood 
+      data: updatedFood,
     });
   } catch (error) {
     console.error(error);
@@ -73,7 +73,7 @@ const listFood = async (req, res) => {
 const removeFood = async (req, res) => {
   try {
     const food = await foodModel.findById(req.body.id);
-    
+
     // Delete image from Cloudinary
     if (food.cloudinary_id) {
       await cloudinary.uploader.destroy(food.cloudinary_id);
@@ -90,7 +90,7 @@ const removeFood = async (req, res) => {
 // const updateFood = async (req, res) => {
 //   try {
 //     const { id, name, price, category, description } = req.body;
-    
+
 //     const updatedFood = await foodModel.findByIdAndUpdate(
 //       id,
 //       { name, price, category, description },
@@ -101,10 +101,10 @@ const removeFood = async (req, res) => {
 //       return res.json({ success: false, message: 'Food item not found' });
 //     }
 
-//     res.json({ 
-//       success: true, 
+//     res.json({
+//       success: true,
 //       message: 'Food item updated successfully',
-//       data: updatedFood 
+//       data: updatedFood
 //     });
 //   } catch (error) {
 //     console.error(error);
