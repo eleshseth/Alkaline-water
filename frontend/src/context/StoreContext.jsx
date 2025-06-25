@@ -9,7 +9,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   //const url = 'https://api.tlofoodchain.com'; // Fixed URL format
-  const url = 'http://localhost:8003';
+  const url = 'https://api.driinkoxygen.com';
 
   const [token, setToken] = useState('');
   const [food_list, setFoodList] = useState([]);

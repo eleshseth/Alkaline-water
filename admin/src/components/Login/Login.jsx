@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -20,10 +20,10 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8003/api/admin/login',
+        'https://api.driinkoxygen.com/api/admin/login',
         data
       );
-      
+
       if (response.data.success) {
         localStorage.setItem('adminToken', response.data.token);
         localStorage.setItem('adminData', JSON.stringify(response.data.data));
@@ -38,32 +38,32 @@ const Login = () => {
   };
 
   return (
-    <div className="admin-login-container">
-      <div className="admin-login-form">
-        <img src={asset.logofinal} alt="TLO Logo" className="admin-logo" />
+    <div className='admin-login-container'>
+      <div className='admin-login-form'>
+        <img src={asset.logofinal} alt='TLO Logo' className='admin-logo' />
         <h2>Admin Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
+              type='email'
+              name='email'
+              placeholder='Email'
               value={data.email}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <input
-              type="password"
-              name="password"
-              placeholder="Password"
+              type='password'
+              name='password'
+              placeholder='Password'
               value={data.password}
               onChange={handleChange}
               required
             />
           </div>
-          <button type="submit">Login</button>
+          <button type='submit'>Login</button>
         </form>
       </div>
     </div>
