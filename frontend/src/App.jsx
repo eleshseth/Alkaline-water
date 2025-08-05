@@ -3,7 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import { Navigate, Route, Routes, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
-import PlaceOrder from './pages/PlaceOrder/placeorder.jsx';
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder.jsx';
 
 //import LoginPopup from '../src/components/LoginPopup/LoginPopup';
 import { StoreContext } from './context/StoreContext';
@@ -16,11 +16,12 @@ import Privacy from './pages/Privacy/Privacy';
 import Shipping from './pages/Shipping/Shipping.jsx';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
-import Cancellation from './pages/Cancellation/cancellation.jsx';  // Add this import at the top
+import Cancellation from './pages/Cancellation/cancellation.jsx'; // Add this import at the top
 import Alkanity from './pages/Alkanity/Alkanity';
 import Origin from './pages/Origin/Origin';
 import Menu from './pages/Menu/Menu';
 import Sustainability from './pages/Sustainability/Sustainability';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -29,7 +30,7 @@ const App = () => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     const storedUserData = localStorage.getItem('userData');
-    
+
     if (storedToken && storedUserData) {
       try {
         setToken(storedToken);
@@ -42,7 +43,7 @@ const App = () => {
         localStorage.removeItem('token');
       }
     }
-  }, []);
+  }, [setToken, setUserData]);
 
   return (
     <>
@@ -66,11 +67,17 @@ const App = () => {
           <Route path='/terms' element={<Terms />} />
           <Route path='/privacy-policy' element={<Privacy />} />
           <Route path='/shipping-policy' element={<Shipping />} />
-          <Route path='/cancellation' element={<Cancellation />} /> {/* Add this route */}
+          <Route path='/cancellation' element={<Cancellation />} />{' '}
+          {/* Add this route */}
           <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/reset-password/:token' element={<ResetPassword />} /> {/* Add this line */}
+          <Route
+            path='/reset-password/:token'
+            element={<ResetPassword />}
+          />{' '}
+          {/* Add this line */}
           <Route path='/alkanity' element={<Alkanity />} />
-          <Route path="/origin" element={<Origin />} />
+          <Route path='/origin' element={<Origin />} />
+          <Route path='/product/:id' element={<ProductDetails />} />
         </Routes>
       </div>
       <Footer />

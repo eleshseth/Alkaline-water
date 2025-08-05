@@ -19,9 +19,13 @@ const Sustainability = () => {
           recyclers.
         </p>
         <p className='p2'>
-          As of 2023 Aava has recycled 75 million PET bottles. All our bottles
-          have buy-back prices printed. We work with waste management agencies
-          which ensure PET bottle collection.
+          As of 2023, DriinkOxygen has successfully recycled over every PET
+          bottles, actively contributing to a circular economy. Every bottle we
+          produce has a buy-back price, ensuring an incentive for
+          responsible disposal. We partner with trusted waste management
+          agencies to facilitate the efficient collection and recycling of all
+          our PET bottles, reaffirming our commitment to a cleaner planet, one
+          bottle at a time.
         </p>
         <p className='p3'>
           This collection is done through EPR partner and our in-house recycling
@@ -35,16 +39,34 @@ const Sustainability = () => {
         <h1 className='image-heading'>SUSTAINABILITY IMPACT</h1>{' '}
       </div>{' '}
       <div className='impact-container'>
-        <img
-          src={assets.impact}
-          alt='Sustainability Impact'
-          className='desktop-impact'
-        />
-        <img
-          src={assets.impactmobile}
-          alt='Sustainability Impact'
-          className='mobile-impact'
-        />
+        <div className='impact-point'>
+          <h3>Decreases Carbon Emission 42-50%</h3>
+          <p>
+            Our advanced recycling program has reduced carbon emissions by over
+            50%, turning waste into eco-friendly products.
+          </p>
+        </div>
+        <div className='impact-point'>
+          <h3>Save Water Consumption up to 80-85%</h3>
+          <p>
+            Through water-efficient systems and smart technologies, we’ve
+            reduced water usage by up to 85% in production.
+          </p>
+        </div>
+        <div className='impact-point'>
+          <h3>Forest Landfill Saved</h3>
+          <p>
+            Our sustainable practices have diverted waste from landfills,
+            preserving over huge forest land.
+          </p>
+        </div>
+        <div className='impact-point'>
+          <h3>Electricity Consumption up to 75% Less</h3>
+          <p>
+            By using energy-efficient technologies and renewable energy, we’ve
+            reduced our electricity consumption by 75%.
+          </p>
+        </div>
       </div>
     </div>
   );

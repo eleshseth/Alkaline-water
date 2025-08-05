@@ -13,7 +13,7 @@ const Alkanity = () => {
     { image: assets.digestion, name: 'Digestion' },
     { image: assets.cholesterol, name: 'Cholesterol' },
     { image: assets.bones, name: 'Bone Health' },
-    { image: assets.age, name: 'Anti-Aging' }
+    { image: assets.age, name: 'Anti-Aging' },
   ];
 
   const nextSlide = () => {
@@ -35,7 +35,7 @@ const Alkanity = () => {
       </div>
       <div className='alkanity-text'>
         <p>
-          Our water maintains a perfect pH balance between 7.8 and 8.5,
+          Our water maintains a perfect pH balance between 8.0 and 9.5,
           providing optimal alkalinity for better health and hydration.
         </p>
       </div>

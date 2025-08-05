@@ -70,14 +70,16 @@
 .quantity-controls {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1px;
-  height: 100%;
+  gap: 10px;
+  padding: 6px;
+  background-color: rgba(65, 199, 24, 0.679);
+  border-radius: 30px;
+  width: fit-content;
 }
 
 .quantity-btn {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   transition: transform 0.2s ease;
   object-fit: contain;
@@ -85,11 +87,11 @@
 
 .quantity-controls p {
   margin: 0;
-
   text-align: center;
   font-size: 16px;
-  display: flex;
-  align-items: center;
+  font-weight: bold;
+  color: white;
+  min-width: 20px;
 }
 
 .cart-items-item {
@@ -103,10 +105,24 @@
   transform: scale(1.1);
 }
 
-.quantity-controls p {
-  margin: 0;
+.price-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
 
-  text-align: center;
+.price-display .original-price {
+  font-size: 12px;
+  color: #666;
+  text-decoration: line-through;
+  font-weight: normal;
+}
+
+.price-display .discounted-price {
+  font-size: 16px;
+  color: #ff0000;
+  font-weight: bold;
 }
 
 /* Update the grid template for better spacing */

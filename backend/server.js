@@ -16,7 +16,10 @@ const PORT = 8009;
 //middlewares
 app.use(express.json());
 app.use(cors());
-
+// //{
+//     origin: ['http://localhost:5173', 'http://localhost:3000'],
+//     credentials: true,
+//   } pass this in cors
 //db connection
 connectDB();
 
@@ -33,5 +36,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('the server is starte  on the port 3004');
+  console.log(`Server is running on port ${PORT}`);
 });

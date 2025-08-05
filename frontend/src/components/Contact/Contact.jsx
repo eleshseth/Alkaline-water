@@ -65,10 +65,10 @@ const Contact = () => {
         </div>
 
         <div className='social-links'>
-          <a href='#'>
+          <a href='https://www.facebook.com/share/19n8wgqTLe/'>
             <img src={assets.facebook} alt='Facebook' />
           </a>
-          <a href='#'>
+          <a href='https://www.instagram.com/driinkoxygenalkalinewater?utm_source=qr&igsh=cDBiYTAxYnQzeHlz'>
             <img src={assets.instagram} alt='Instagram' />
           </a>
           <a href='#'>

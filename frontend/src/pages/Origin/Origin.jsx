@@ -13,7 +13,8 @@ const Origin = () => {
           className='mobile-origin'
         />
       </div>
-      <div className='origin-image'>
+      <div className='origin-image1'>
+      
         <img src={assets.origin2} alt='Origin 2' />
       </div>
     </div>

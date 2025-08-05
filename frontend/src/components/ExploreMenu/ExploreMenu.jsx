@@ -1,30 +1,37 @@
 import React from 'react';
 import './ExploreMenu.css';
-import { menu_list } from '../../assets/assets';
 
-
-
-const ExploreMenu = ({ category, setCategory }) => {
+const ExploreMenu = () => {
   return (
     <div className='explore-menu' id='explore-menu'>
-      <h1>Naturally Alkaline Mineral Water. Origin Aravalli Hills.</h1>
+      <h1>Ionized Alkaline Water</h1>
       <p className='explore-menu-text'>
-        The Aava story began when time began, before the Himalayas or the Alps
-        were born. This is the story of the majestic Aravallis, one of the
-        world's oldest mountain ranges, a legend that lives on with the passage
-        of time from where Aava originates. Drop by drop, for 20 years, Aava
-        trickles down from the catchment area to our deep underground
-        reservoirs. Along the way it is purified as it passes through layers of
-        alluvium and clay that act as natural filters. To ensure purity and an
-        unaltered natural mineral composition in every sip, our bottling
-        environment adheres to the toughest international certification
-        standards.
+        DRIINKOXYGEN offers ionized alkaline water for a healthier you.
+        DRIINKOXYGEN provides superior hydration and enhances well-being. True
+        health starts from within, and ionized alkaline water supports a
+        revitalized body and mind. The water has a balanced pH level and is
+        fortified with essential minerals like calcium, magnesium, sodium, and
+        potassium. This supports optimal hydration and cellular function. The
+        unique ionization process creates water with a higher potential for
+        antioxidants. This can help neutralize free radicals and reduce
+        oxidative stress in the body. The smaller molecular clusters penetrate
+        cells more efficiently, enhancing nutrient and oxygen delivery while
+        aiding in detoxification. This results in faster and deeper hydration.
+        DRIINKOXYGEN provides a path to a healthier you, whether you seek
+        enhanced performance and faster recovery, or aim for improved digestion,
+        boosted immunity, and healthier skin. Explore the range of premium
+        ionized alkaline water products. Start a journey of
+        transformative hydration.
       </p>
 
-      <button className='watch-button'>Watch</button>
-    
-      
-     
+      <button
+        className='watch-button'
+        onClick={() =>
+          window.open('https://www.youtube.com/watch?v=uDACCsXARLU', '_blank')
+        }>
+        Watch
+      </button>
+
       {/* <div className='explore-menu-list'>
         {menu_list.map((item, index) => {
           return (
@@ -46,7 +53,6 @@ const ExploreMenu = ({ category, setCategory }) => {
           );
         })}
       </div> */}
-    
     </div>
   );
 };

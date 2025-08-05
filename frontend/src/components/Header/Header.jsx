@@ -12,11 +12,14 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='header-contents'>
-        <h2>Order Your Himalayan water from here</h2>
+        <h2>
+          Pure Blessings from the Himalayas  Order
+          Today!
+        </h2>
         <p>
-          Craving something tasty? Order your favorite food from top restaurants
-          —fresh, fast, and delivered right to your door. Satisfaction
-          guaranteed! Your next meal awaits. Order now!
+          Bring home the sacred essence of the Himalayas. Pure, authentic Ganga
+          water collected with care. A divine gift, delivered to your doorstep
+          Order now!
         </p>
         <button onClick={scrollToMenu}>View Menu</button>
       </div>

@@ -4,11 +4,7 @@ import header_img from './header_img.png';
 import search_icon from './search_icon.png';
 import menu_1 from './menu_1.png';
 import menu_2 from './menu_2.png';
-import menu_3 from './menu_3.png';
-import menu_4 from './menu_4.png';
-import menu_5 from './menu_5.png';
-import menu_6 from './menu_6.png';
-import menu_7 from './menu_7.png';
+
 import menu_8 from './menu_8.png';
 
 import food_1 from './food_1.png';
@@ -99,6 +95,9 @@ import logofinal from './logofinal.png';
 import impact from './impact.png';
 import impactmobile from './impactmobile.png';
 import originmobile from './originmobile.jpg';
+import copy from "./copy.jpg"
+import front from './front.jpg';
+import back from './back.jpg';
 
 export const assets = {
   logo,
@@ -156,7 +155,10 @@ export const assets = {
   logofinal,
   impact,
   impactmobile,
-  originmobile
+  originmobile,
+  copy,
+  front,
+  back,
 };
 
 export const menu_list = [

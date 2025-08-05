@@ -10,20 +10,24 @@ const Footer = () => {
         <div className='footer-section company-info'>
           {/* <img src={assets.logo} alt='TLO Food Chain' className='footer-logo' /> */}
           <p className='company-description'>
-            SB ENTERPRISE has been producing premium alkaline water since 2022.
+            SB ENTERPRISE has been producing premium alkaline water since 2023.
             We proudly serve HORECA distributors, wellness-focused QSR chains,
             B2B brands, and health-conscious B2C customers. Our commitment to
             purity and wellness ensures every bottle delivers hydration with a
             purpose.
           </p>
           <div className='footer-social'>
-            <a href='https://facebook.com' target='_blank'>
+            <a
+              href='https://www.facebook.com/share/19n8wgqTLe/'
+              target='_blank'>
               <img src={assets.facebook} alt='Facebook' />
             </a>
             <a href='https://twitter.com' target='_blank'>
               <img src={assets.twitter} alt='Twitter' />
             </a>
-            <a href='https://instagram.com' target='_blank'>
+            <a
+              href='https://www.instagram.com/driinkoxygenalkalinewater?utm_source=qr&igsh=cDBiYTAxYnQzeHlz'
+              target='_blank'>
               <img src={assets.instagram} alt='Instagram' />
             </a>
           </div>
@@ -38,9 +42,9 @@ const Footer = () => {
             <li>
               <Link to='/menu'>Menu</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to='/blog'>Blog</Link>
-            </li>
+            </li> */}
             <li>
               <Link to='/contact'>Contact</Link>
             </li>
@@ -59,7 +63,7 @@ const Footer = () => {
             </li>
             <li>
               <img src={assets.mobile} alt='Phone' />
-              <span>+91 +919212324909</span>
+              <span>+919212324909</span>
             </li>
             <li>
               <img src={assets.email} alt='Email' />
@@ -71,7 +75,7 @@ const Footer = () => {
         <div className='footer-section business-info'>
           <h3>Business Info</h3>
           <p>GST No: 09AHPPP9337B1ZX</p>
-          <p>Operating Hours: 10:00 AM - 10:00 PM</p>
+          <p>Operating Hours: 10:00 AM - 06:00 PM</p>
           <p>All days including weekends</p>
         </div>
 
@@ -96,7 +100,7 @@ const Footer = () => {
 
       <div className='footer-bottom'>
         <p>
-          &copy; {new Date().getFullYear()} TLO Food Chain. All rights reserved
+          &copy; {new Date().getFullYear()} DriinkOxygen. All rights reserved
           <b> @Powered by MarketMinds Digital Solutions</b>
         </p>
         <div className='footer-bottom-links'>

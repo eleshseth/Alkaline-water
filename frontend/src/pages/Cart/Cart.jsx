@@ -6,7 +6,13 @@ import { assets } from '../../assets/assets';
 
 const Cart = ({ setShowLogin }) => {
   const { url } = useContext(StoreContext);
-  const { cartItems, food_list, removeFromCart, addToCart, getTotalCartAmount } = useContext(StoreContext);
+  const {
+    cartItems,
+    food_list,
+    removeFromCart,
+    addToCart,
+    getTotalCartAmount,
+  } = useContext(StoreContext);
   const navigate = useNavigate();
   const { token } = useContext(StoreContext);
 
@@ -28,8 +34,8 @@ const Cart = ({ setShowLogin }) => {
             return (
               <div key={item._id}>
                 <div className='cart-item-title cart-items-item'>
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.name}
                     onError={(e) => {
                       e.target.onerror = null;
@@ -37,24 +43,31 @@ const Cart = ({ setShowLogin }) => {
                     }}
                   />
                   <p>{item.name}</p>
-                  <p>₹{item.price}</p>
+                  <div className='price-display'>
+                    <span className='original-price'>₹{item.price}</span>
+                    <span className='discounted-price'>
+                      ₹{Math.round(item.price * 0.7)}
+                    </span>
+                  </div>
                   <div className='quantity-controls'>
-                    <img 
-                      src={assets.remove_icon_red} 
-                      alt="-" 
+                    <img
+                      src={assets.remove_icon_red}
+                      alt='-'
                       onClick={() => removeFromCart(item._id)}
                       className='quantity-btn'
                     />
                     <p>{cartItems[item._id]}</p>
-                    <img 
-                      src={assets.add_icon_green} 
-                      alt="+" 
+                    <img
+                      src={assets.add_icon_green}
+                      alt='+'
                       onClick={() => addToCart(item._id)}
                       className='quantity-btn'
                     />
                   </div>
-                  <p>₹{item.price * cartItems[item._id]}</p>
-                  <p onClick={() => removeFromCart(item._id)} className='cross'>X</p>
+                  <p>₹{Math.round(item.price * 0.7) * cartItems[item._id]}</p>
+                  <p onClick={() => removeFromCart(item._id)} className='cross'>
+                    X
+                  </p>
                 </div>
                 <hr />
               </div>
@@ -73,12 +86,12 @@ const Cart = ({ setShowLogin }) => {
           <hr />
           <div className='cart-total-details'>
             <p>delivery Fee</p>
-            <p>₹{getTotalCartAmount() === 0 ? 0 : 50}</p>
+            <p>₹{getTotalCartAmount() === 0 ? 0 : 0}</p>
           </div>
           <hr />
           <div className='cart-total-details'>
             <b>Total</b>
-            <p>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 50}</p>
+            <p>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 0}</p>
           </div>
           <hr />
           <button onClick={() => navigate('/order')}>

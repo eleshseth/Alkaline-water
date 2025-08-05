@@ -3,6 +3,7 @@ import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url, setCartItems } =
@@ -41,57 +42,80 @@ const PlaceOrder = () => {
     let orderItems = [];
     food_list.forEach((item) => {
       if (cartItems[item._id] > 0) {
-        let itemInfo = { ...item, quantity: cartItems[item._id] };
+        let itemInfo = {
+          ...item,
+          quantity: cartItems[item._id],
+          // Use discounted price for order
+          price: Math.round(item.price * 0.7),
+        };
         orderItems.push(itemInfo);
       }
     });
 
-    // Get userId from token
+    // Decode token to get userId
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const userId = decodedToken.id;
 
     // Prepare order data
-    let orderData = {
+    const orderData = {
       userId,
       address: data,
       items: orderItems,
-      amount: getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 50),
+      amount: getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 0),
     };
 
     try {
-      // Send order data to backend
-      const response = await axios.post(`${url}/api/order/place`, orderData, {
-        headers: { token },
-      });
+      // Create Razorpay order without storing in DB
+      const response = await axios.post(
+        `${url}/api/order/create-razorpay`,
+        orderData,
+        {
+          headers: { token },
+        }
+      );
 
       if (response.data.success) {
-        const { order } = response.data;
+        const { order, razorpayOrderId } = response.data;
 
-        // Initialize Razorpay payment
+        // Configure all Razorpay options
         const options = {
-          key: 'rzp_live_5iWccL6sPbG4Id', // Update this to use environment variable
-          amount: order.amount,
+          key: 'rzp_live_aJx1lD3Co3WbmE', // Using test key from backend
+          amount: order.amount, // Amount in paise
           currency: 'INR',
           name: 'Food Store',
           description: 'Order Payment',
-          order_id: order.id,
+          order_id: razorpayOrderId, // Razorpay Order ID
           handler: async function (response) {
+            if (
+              !response.razorpay_payment_id ||
+              !response.razorpay_order_id ||
+              !response.razorpay_signature
+            ) {
+              toast.error('Payment failed! Please try again.');
+              return;
+            }
             try {
               const verifyRes = await axios.post(
                 `${url}/api/order/verify`,
-                { response },
-                { headers: { token: localStorage.getItem('token') } }
+                { response, orderData }, // Include orderData for verification
+                { headers: { token } }
               );
               if (verifyRes.data.success) {
-                setCartItems({}); // Clear cart after successful payment
+                setCartItems({});
+                toast.success('Order placed successfully!');
                 navigate('/orders');
               } else {
-                toast.error('Payment verification failed!');
+                toast.error('Payment verification failed! Please try again.');
               }
             } catch (err) {
               console.error('Error verifying payment:', err);
-              toast.error('Payment verification error!');
+              toast.error('Payment verification failed! Please try again.');
             }
+          },
+          modal: {
+            ondismiss: function () {
+              toast.info('Payment cancelled by user');
+            },
           },
           prefill: {
             name: `${data.firstName} ${data.lastName}`,
@@ -103,81 +127,31 @@ const PlaceOrder = () => {
           },
         };
 
-        // Open Razorpay checkout
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();
-      } else {
-        alert('Error placing order');
-      }
-    } catch (error) {
-      console.error('Error placing order:', error);
-      alert('Error placing order');
-    }
-  };
+        try {
+          const rzp1 = new window.Razorpay(options);
 
-  const handleCodOrder = async (event) => {
-    event.preventDefault();
+          // Handle errors in payment initialization
+          rzp1.on('payment.failed', function (resp) {
+            toast.error('Payment failed! Please try again.');
+            console.error('Payment failed:', resp.error);
+          });
 
-    // Validate all required fields
-    const requiredFields = [
-      'firstName',
-      'lastName',
-      'email',
-      'street',
-      'city',
-      'state',
-      'zipcode',
-      'country',
-      'phone',
-    ];
-
-    const emptyFields = requiredFields.filter((field) => !data[field]);
-
-    if (emptyFields.length > 0) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
-    // Prepare order items
-    let orderItems = [];
-    food_list.forEach((item) => {
-      if (cartItems[item._id] > 0) {
-        let itemInfo = { ...item, quantity: cartItems[item._id] };
-        orderItems.push(itemInfo);
-      }
-    });
-
-    const decodedToken = JSON.parse(atob(token.split('.')[1]));
-    const userId = decodedToken.id;
-
-    let orderData = {
-      userId,
-      address: data,
-      items: orderItems,
-      amount: getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 50),
-    };
-
-    try {
-      const response = await axios.post(
-        `${url}/api/order/place-cod`,
-        orderData,
-        {
-          headers: { token: localStorage.getItem('token') },
+          // Open the payment popup
+          rzp1.open();
+        } catch (error) {
+          console.error('Error initializing Razorpay:', error);
+          toast.error('Could not initialize payment. Please try again.');
         }
-      );
-
-      if (response.data.success) {
-        setCartItems({}); // Clear cart after successful COD order
-        alert('Order placed successfully!');
-        navigate('/orders');
       } else {
-        alert('Error placing order');
+        toast.error('Error creating payment order');
       }
     } catch (error) {
-      console.error('Error placing order:', error);
-      alert('Error placing order');
+      console.error('Error creating payment order:', error);
+      toast.error('Error creating payment order');
     }
   };
+
+  // COD functionality removed as it's not being used
 
   return (
     <form className='place-order' onSubmit={placeOrder}>
@@ -276,16 +250,16 @@ const PlaceOrder = () => {
           <hr />
           <div className='cart-total-details'>
             <p>Delivery Fee</p>
-            <p>₹{getTotalCartAmount() === 0 ? 0 : 50}</p>
+            <p>₹{getTotalCartAmount() === 0 ? 0 : 0}</p>
           </div>
           <hr />
           <div className='cart-total-details'>
             <b>Total</b>
-            <p>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 50}</p>
+            <p>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 0}</p>
           </div>
           <hr />
-          {/* <button type='submit'>PROCEED TO PAYMENT</button> */}
-          <button onClick={handleCodOrder}>PROCEED VIA COD</button>
+          <button type='submit'>PROCEED TO PAYMENT</button>
+          {/* <button onClick={handleCodOrder}>PROCEED VIA COD</button> */}
         </div>
       </div>
     </form>

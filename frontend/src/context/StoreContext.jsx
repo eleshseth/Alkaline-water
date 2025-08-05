@@ -1,5 +1,5 @@
-import { createContext, use } from 'react';
-import { food_list } from '../assets/assets';
+import { createContext } from 'react';
+
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -8,8 +8,10 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  //const url = 'https://api.tlofoodchain.com'; // Fixed URL format
+  // Use local development server
   const url = 'https://api.driinkoxygen.com';
+  //https://api.driinkoxygen.com
+  //'http://localhost:8009';
 
   const [token, setToken] = useState('');
   const [food_list, setFoodList] = useState([]);
@@ -75,7 +77,9 @@ const StoreContextProvider = (props) => {
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id === item);
-        totalAmount += itemInfo.price * cartItems[item];
+        // Apply 30% discount (70% of original price)
+        const discountedPrice = Math.round(itemInfo.price * 0.7);
+        totalAmount += discountedPrice * cartItems[item];
       }
     }
     return totalAmount;

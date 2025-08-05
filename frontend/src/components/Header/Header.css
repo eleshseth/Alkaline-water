@@ -26,6 +26,7 @@
   color: #41c21a;
   font-size: max(4vw, 22px);
    font-family: 'MuseoSans', sans-serif;
+   box-shadow: #000000 0px 0px 0.5px;
 
 }
 .header-contents p {

@@ -8,12 +8,12 @@ import {
   updateOrderStatus,
   placeCodOrder,
   updateStoreStatus,
-  deleteOrder
+  deleteOrder,
 } from '../controllers/orderController.js';
 
 const orderRouter = express.Router();
 
-orderRouter.post('/place', middlewareAuth, placeOrder);
+orderRouter.post('/create-razorpay', middlewareAuth, placeOrder); // New endpoint for creating Razorpay order
 orderRouter.post('/verify', middlewareAuth, verify);
 orderRouter.get('/user-orders', middlewareAuth, getUserOrders);
 orderRouter.get('/admin-orders', getAllOrders);
