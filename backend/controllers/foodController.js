@@ -9,7 +9,7 @@ const addFood = async (req, res) => {
     }
 
     // Validate required fields
-    const { name, description, price, category ,discount} = req.body;
+    const { name, description, price, category, discount } = req.body;
     if (!name || !description || !price || !category) {
       return res.json({
         success: false,
@@ -68,11 +68,19 @@ const addFood = async (req, res) => {
 
 const updateFood = async (req, res) => {
   try {
-    const { id, name, price, category, description, stock, discount } = req.body; // Add discount
+    const { id, name, price, category, description, stock, discount } =
+      req.body; // Add discount
 
     const updatedFood = await foodModel.findByIdAndUpdate(
       id,
-      { name, price, category, description, stock, discount: Number(discount) || 0 }, // Add discount
+      {
+        name,
+        price,
+        category,
+        description,
+        stock,
+        discount: Number(discount) || 0,
+      }, // Add discount
       { new: true }
     );
 
@@ -110,7 +118,8 @@ const removeFood = async (req, res) => {
     }
 
     // Delete images from Cloudinary
-    if (food.cloudinary_ids && food.cloudinary_ids.length > 0) { // Fixed field name
+    if (food.cloudinary_ids && food.cloudinary_ids.length > 0) {
+      // Fixed field name
       await Promise.all(
         food.cloudinary_ids.map((id) => cloudinary.uploader.destroy(id))
       );

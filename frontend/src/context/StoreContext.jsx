@@ -9,7 +9,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   // Use local development server
-  const url = 'http://localhost:8009';
+  const url = 'https://api.driinkoxygen.com';
   //https://api.driinkoxygen.com
   //'http://localhost:8009';
   // 'https://api.driinkoxygen.com';

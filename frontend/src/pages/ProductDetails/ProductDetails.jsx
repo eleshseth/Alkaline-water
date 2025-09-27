@@ -16,9 +16,7 @@ const ProductDetails = () => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
-   
-      window.scrollTo({ top: 0, behavior: 'smooth' });
- 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const foundProduct = food_list.find((item) => item._id === id);
     if (foundProduct) {
@@ -64,7 +62,6 @@ const ProductDetails = () => {
       navigate('/cart');
     }
   };
-  
 
   return (
     <div className='product-details'>
@@ -81,7 +78,9 @@ const ProductDetails = () => {
             Menu
           </span>
           <span className='breadcrumb-separator'> / </span>
-          <span className='breadcrumb-current'>{product.name.replace(/\s*\([^)]*\)$/, '')}</span>
+          <span className='breadcrumb-current'>
+            {product.name.replace(/\s*\([^)]*\)$/, '')}
+          </span>
         </div>
 
         <div className='product-details-content'>
@@ -125,7 +124,9 @@ const ProductDetails = () => {
 
           {/* Product Information */}
           <div className='product-info'>
-            <h1 className='product-title'>{product.name.replace(/\s*\([^)]*\)$/, '')}</h1>
+            <h1 className='product-title'>
+              {product.name.replace(/\s*\([^)]*\)$/, '')}
+            </h1>
 
             {/* Rating */}
             <div className='product-rating'>
