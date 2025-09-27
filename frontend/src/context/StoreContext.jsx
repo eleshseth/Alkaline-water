@@ -9,9 +9,10 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   // Use local development server
-  const url = 'https://api.driinkoxygen.com';
+  const url = 'http://localhost:8009';
   //https://api.driinkoxygen.com
   //'http://localhost:8009';
+  // 'https://api.driinkoxygen.com';
 
   const [token, setToken] = useState('');
   const [food_list, setFoodList] = useState([]);
@@ -77,9 +78,14 @@ const StoreContextProvider = (props) => {
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id === item);
-        // Apply 30% discount (70% of original price)
-        const discountedPrice = Math.round(itemInfo.price * 0.7);
-        totalAmount += discountedPrice * cartItems[item];
+        if (itemInfo) {
+          // Apply product-specific discount
+          const discount = itemInfo.discount || 0; // Use 0 as default instead of 30
+          const discountedPrice = Math.round(
+            (itemInfo.price * (100 - discount)) / 100
+          );
+          totalAmount += discountedPrice * cartItems[item];
+        }
       }
     }
     return totalAmount;

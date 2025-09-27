@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 
-const Fooditem = ({ id, name, price, image, stock }) => {
+const Fooditem = ({ id, name, price, image, stock, discount = 30 }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
   const [imgError, setImgError] = useState(false);
   const navigate = useNavigate();
@@ -13,6 +13,9 @@ const Fooditem = ({ id, name, price, image, stock }) => {
   const isOutOfStock = stock <= 0;
   const currentQuantity = cartItems[id] || 0;
   const remainingStock = stock - currentQuantity;
+
+  // Calculate discounted price based on the discount from backend
+  const discountedPrice = Math.round((price * (100 - discount)) / 100);
 
   const handleProductClick = () => {
     navigate(`/product/${id}`);
@@ -61,13 +64,13 @@ const Fooditem = ({ id, name, price, image, stock }) => {
         style={{ cursor: 'pointer' }}>
         <div className='food-item-name-rating'>
           <p>{name.replace(/\s*\([^)]*\)/g, '').trim()}</p>
-          <span className='discount-badge'>30% OFF</span>
+          <span className='discount-badge'>{discount}% OFF</span>
         </div>
       </div>
       <p className='food-item-price' dir='ltr'>
         <span className='original-price'>₹{price}</span>
         <b>₹</b>
-        {Math.round(price * 0.7)}
+        {discountedPrice}
         <span className='unit-text' dir='ltr'>
           {name.includes('kg') ? '/Kg' : name.includes('ltr') ? '/Ltr' : '/6Pc'}
         </span>

@@ -46,7 +46,10 @@ const Cart = ({ setShowLogin }) => {
                   <div className='price-display'>
                     <span className='original-price'>₹{item.price}</span>
                     <span className='discounted-price'>
-                      ₹{Math.round(item.price * 0.7)}
+                      ₹
+                      {Math.round(
+                        (item.price * (100 - (item.discount || 30))) / 100
+                      )}
                     </span>
                   </div>
                   <div className='quantity-controls'>
@@ -64,7 +67,12 @@ const Cart = ({ setShowLogin }) => {
                       className='quantity-btn'
                     />
                   </div>
-                  <p>₹{Math.round(item.price * 0.7) * cartItems[item._id]}</p>
+                  <p>
+                    ₹
+                    {Math.round(
+                      (item.price * (100 - (item.discount || 30))) / 100
+                    ) * cartItems[item._id]}
+                  </p>
                   <p onClick={() => removeFromCart(item._id)} className='cross'>
                     X
                   </p>

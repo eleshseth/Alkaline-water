@@ -16,19 +16,22 @@ const ProductDetails = () => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
+   
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+ 
+
     const foundProduct = food_list.find((item) => item._id === id);
     if (foundProduct) {
       setProduct(foundProduct);
 
-      // Create multiple images for the gallery using assets
-      const images = [
-        foundProduct.image, // Main product image
-        assets.front, // Front view from assets
-        assets.back, // Back view from assets
-      ];
+      // Only use the main product image or all uploaded images
+      const images =
+        foundProduct.images && foundProduct.images.length > 0
+          ? foundProduct.images
+          : [foundProduct.image];
 
       setProductImages(images);
-      setMainImage(foundProduct.image);
+      setMainImage(images[0]);
     }
   }, [id, food_list]);
 
@@ -44,7 +47,8 @@ const ProductDetails = () => {
   const isOutOfStock = product.stock <= 0;
   const currentQuantity = cartItems[product._id] || 0;
   const remainingStock = product.stock - currentQuantity;
-  const discountedPrice = Math.round(product.price * 0.7);
+  const discount = product.discount || 30; // Default to 30% if not specified
+  const discountedPrice = Math.round((product.price * (100 - discount)) / 100);
   const savings = product.price - discountedPrice;
 
   const handleAddToCart = () => {
@@ -60,6 +64,7 @@ const ProductDetails = () => {
       navigate('/cart');
     }
   };
+  
 
   return (
     <div className='product-details'>
@@ -76,7 +81,7 @@ const ProductDetails = () => {
             Menu
           </span>
           <span className='breadcrumb-separator'> / </span>
-          <span className='breadcrumb-current'>{product.name}</span>
+          <span className='breadcrumb-current'>{product.name.replace(/\s*\([^)]*\)$/, '')}</span>
         </div>
 
         <div className='product-details-content'>
@@ -93,38 +98,34 @@ const ProductDetails = () => {
                   e.target.src = 'https://via.placeholder.com/400';
                 }}
               />
-              <div className='discount-badge-large'>30% OFF</div>
+              <div className='discount-badge-large'>{discount}% OFF</div>
               <div className='zoom-indicator'>🔍 Click to zoom</div>
             </div>
 
             {/* Thumbnail images */}
             <div className='thumbnail-images'>
-              {productImages.map((image, index) => {
-                const labels = ['Main', 'Front View', 'Back View'];
-                return (
-                  <div key={index} className='thumbnail-container'>
-                    <img
-                      src={image}
-                      alt={`${product.name} ${labels[index]}`}
-                      className={`thumbnail ${
-                        mainImage === image ? 'active' : ''
-                      }`}
-                      onClick={() => setMainImage(image)}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = 'https://via.placeholder.com/80';
-                      }}
-                    />
-                    <span className='thumbnail-label'>{labels[index]}</span>
-                  </div>
-                );
-              })}
+              {productImages.map((image, index) => (
+                <div key={index} className='thumbnail-container'>
+                  <img
+                    src={image}
+                    alt={`${product.name} ${index + 1}`}
+                    className={`thumbnail ${
+                      mainImage === image ? 'active' : ''
+                    }`}
+                    onClick={() => setMainImage(image)}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://via.placeholder.com/80';
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Product Information */}
           <div className='product-info'>
-            <h1 className='product-title'>{product.name}</h1>
+            <h1 className='product-title'>{product.name.replace(/\s*\([^)]*\)$/, '')}</h1>
 
             {/* Rating */}
             <div className='product-rating'>
@@ -143,7 +144,9 @@ const ProductDetails = () => {
               <div className='price-container'>
                 <span className='current-price'>₹{discountedPrice}</span>
                 <span className='original-price'>₹{product.price}</span>
-                <span className='savings'>You Save ₹{savings} (30%)</span>
+                <span className='savings'>
+                  You Save ₹{savings} ({discount}%)
+                </span>
               </div>
               <div className='unit-info'>
                 {product.name.includes('kg')
@@ -259,14 +262,16 @@ const ProductDetails = () => {
               )
               .slice(0, 4)
               .map((item) => {
-                const itemDiscountedPrice = Math.round(item.price * 0.7);
+                const itemDiscountedPrice = Math.round(
+                  (item.price * (100 - (item.discount || 30))) / 100
+                );
                 return (
                   <div
                     key={item._id}
                     className='related-product-card'
                     onClick={() => navigate(`/product/${item._id}`)}>
                     <img src={item.image} alt={item.name} />
-                    <h4>{item.name}</h4>
+                    <h4>{item.name.replace(/\s*\([^)]*\)$/, '')}</h4>
                     <div className='related-product-price'>
                       <span className='current'>₹{itemDiscountedPrice}</span>
                       <span className='original'>₹{item.price}</span>

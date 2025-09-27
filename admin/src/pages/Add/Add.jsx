@@ -7,10 +7,11 @@ const Add = ({ url }) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]); // Changed to handle multiple images
   const [unit, setUnit] = useState('/pc');
   const [description, setDescription] = useState('');
   const [stock, setStock] = useState(0); // Add stock state
+  const [discount, setDiscount] = useState(0); // Changed from 30 to 0 as default
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +19,20 @@ const Add = ({ url }) => {
     formData.append('name', name + ` (${unit})`);
     formData.append('price', price);
     formData.append('category', category);
-    formData.append('image', image);
     formData.append('description', description);
     formData.append('stock', stock); // Add stock to form data
+    formData.append('discount', discount); // Add discount to form data
+
+    // Append multiple images
+    images.forEach((image) => {
+      formData.append('images', image);
+    });
+
+    // Debug: Log all form data
+    console.log('Form data entries:');
+    for (let [key, value] of formData.entries()) {
+      console.log(key, ':', value instanceof File ? value.name : value);
+    }
 
     try {
       const response = await axios.post(`${url}/api/food/add`, formData);
@@ -29,10 +41,11 @@ const Add = ({ url }) => {
         setName('');
         setPrice('');
         setCategory('');
-        setImage(null);
+        setImages([]);
         setUnit('');
         setDescription('');
         setStock(0); // Reset stock
+        setDiscount(0); // Reset discount to 0 instead of 30%
       } else {
         toast.error('Failed to add food item');
       }
@@ -119,13 +132,50 @@ const Add = ({ url }) => {
         </div>
 
         <div className='form-group'>
-          <label>Image:</label>
+          <label>Discount (%):</label>
           <input
-            type='file'
-            onChange={(e) => setImage(e.target.files[0])}
-            accept='image/*'
+            type='number'
+            value={discount}
+            onChange={(e) => setDiscount(e.target.value)}
+            min='0'
+            max='100'
             required
           />
+          <small>Enter discount percentage (0-100)</small>
+        </div>
+
+        <div className='add-img-upload flex-col'>
+          <label htmlFor='images'>
+            <p>Upload Images (PNG, JPG, JPEG, WEBP, GIF)</p>
+          </label>
+          <input
+            onChange={(e) => setImages(Array.from(e.target.files))}
+            type='file'
+            id='images'
+            multiple
+            accept='image/png,image/jpg,image/jpeg,image/webp,image/gif'
+            hidden
+            required
+          />
+
+          {/* Image Preview */}
+          {images.length > 0 && (
+            <div className='image-preview'>
+              {images.map((image, index) => (
+                <img
+                  key={index}
+                  src={URL.createObjectURL(image)}
+                  alt={`Preview ${index + 1}`}
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    margin: '5px',
+                    objectFit: 'cover',
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <button type='submit' className='submit-btn'>

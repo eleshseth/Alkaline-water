@@ -45,8 +45,8 @@ const PlaceOrder = () => {
         let itemInfo = {
           ...item,
           quantity: cartItems[item._id],
-          // Use discounted price for order
-          price: Math.round(item.price * 0.7),
+          // Use product-specific discounted price for order
+          price: Math.round((item.price * (100 - (item.discount || 30))) / 100),
         };
         orderItems.push(itemInfo);
       }

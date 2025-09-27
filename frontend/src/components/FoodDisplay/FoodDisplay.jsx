@@ -9,7 +9,7 @@ const FoodDisplay = ({ category }) => {
     <div className='food-display' id='food-display'>
       <h2>Shop Our Alkaline Water From Here</h2>
       <div className='food-display-list'>
-        {food_list.map((item, index) => {
+        {food_list.map((item) => {
           if (category === 'All' || item.category == category) {
             const isOutOfStock = item.stock <= 0;
             return (
@@ -18,8 +18,13 @@ const FoodDisplay = ({ category }) => {
                 id={item._id}
                 name={item.name}
                 price={item.price}
-                image={item.image}
+                image={
+                  item.images && item.images.length > 0
+                    ? item.images[0]
+                    : item.image
+                }
                 stock={item.stock}
+                discount={item.discount}
                 className={isOutOfStock ? 'out-of-stock' : ''}
               />
             );

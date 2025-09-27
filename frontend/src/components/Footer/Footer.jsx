@@ -67,7 +67,7 @@ const Footer = () => {
             </li>
             <li>
               <img src={assets.email} alt='Email' />
-              <span>driinkOxygen@gmail.com</span>
+              <span>driinkoxygen@gmail.com</span>
             </li>
           </ul>
         </div>
