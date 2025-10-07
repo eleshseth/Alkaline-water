@@ -10,7 +10,7 @@ import contactRouter from './routes/contactRoute.js';
 import 'dotenv/config.js';
 
 const app = express();
-const PORT = 8012;
+const PORT = 8009;
 
 // ✅ Always put this before routes and JSON parsing
 app.use(
