@@ -14,7 +14,9 @@ const app = express();
 const PORT = 8009;
 
 //middlewares
-app.use(express.json());
+app.use(express.json({ limit: '50mb' })); // Increase JSON payload limit
+app.use(express.urlencoded({ limit: '50mb', extended: true })); // Increase URL-encoded payload limit
+
 // Add CORS middleware
 app.use(
   cors({
