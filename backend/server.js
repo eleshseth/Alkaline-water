@@ -13,11 +13,12 @@ import contactRouter from './routes/contactRoute.js';
 const app = express();
 const PORT = 8009;
 
+app.use(express.json());
+
 // Add CORS middleware FIRST - before other middlewares
 app.use(
   cors({
     origin: [
-      'https://api.driinkoxygen.com',
       'https://admin.driinkoxygen.com',
       'https://driinkoxygen.com',
       'http://localhost:5173',
