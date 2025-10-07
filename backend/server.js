@@ -11,7 +11,7 @@ import contactRouter from './routes/contactRoute.js';
 
 //app config
 const app = express();
-const PORT = 8009;
+const PORT = 8007;
 
 app.use(express.json());
 app.use(cors());
