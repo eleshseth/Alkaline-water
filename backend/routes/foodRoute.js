@@ -40,7 +40,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB file size limit
+    fileSize: 50 * 1024 * 1024, // 5MB file size limit
   },
 });
 foodRouter.post('/add', upload.array('images', 5), addFood); // Changed to handle multiple images
