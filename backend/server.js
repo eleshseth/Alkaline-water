@@ -14,22 +14,7 @@ const app = express();
 const PORT = 8009;
 
 app.use(express.json());
-
-// Add CORS middleware FIRST - before other middlewares
-app.use(
-  cors({
-    origin: [
-      'https://admin.driinkoxygen.com',
-      'https://driinkoxygen.com',
-      'http://localhost:5173',
-      'http://localhost:3000',
-      'http://localhost:5174',
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'token'],
-  })
-);
+app.use(cors());
 
 // Handle preflight requests
 app.options('*', cors());
