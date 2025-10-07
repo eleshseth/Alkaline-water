@@ -110,7 +110,7 @@ const Add = ({ url }) => {
             onChange={(e) => setCategory(e.target.value)}
             required>
             <option value=''>Select Category</option>
-            <option value='Momo'>Momo</option>
+            <option value='Drinking Water'>Drinking Water</option>
             <option value='Rolls'>Rolls</option>
             <option value='Fries'>Fries</option>
             <option value='Kurkure'>Kurkure</option>

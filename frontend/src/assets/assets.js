@@ -76,17 +76,17 @@ import blog3 from './blog3.jpg';
 import kurkure from './kurkure.webp';
 import packing from './packing.jpg';
 import transport from './transportation.jpg';
-import Recycled from "./Recycle.jpg" 
-import Bottlebenefit from "./Bottlebenefit.jpg"
-import alkanity from "./alkanity.jpg"
-import brain  from "./brain.png";
-import bones from "./bones.png";
-import heart from "./heart.png";
-import digestion from "./digestion.png";
-import cholesterol from "./cholesterol.png";
-import hydration from "./hydration.png";
-import immunity from "./immunity.png";
-import age from "./age.png";
+import Recycled from './Recycle.jpg';
+import Bottlebenefit from './Bottlebenefit.jpg';
+import alkanity1 from './alkanity1.jpg';
+import brain from './brain.png';
+import bones from './bones.png';
+import heart from './heart.png';
+import digestion from './digestion.png';
+import cholesterol from './cholesterol.png';
+import hydration from './hydration.png';
+import immunity from './immunity.png';
+import age from './age.png';
 import layer from './layer.jpg';
 import origin from './origin.jpg';
 import origin2 from './origin2.jpg';
@@ -95,7 +95,7 @@ import logofinal from './logofinal.png';
 import impact from './impact.png';
 import impactmobile from './impactmobile.png';
 import originmobile from './originmobile.jpg';
-import copy from "./copy.jpg"
+import copy from './copy.jpg';
 import front from './front.jpg';
 import back from './back.jpg';
 
@@ -109,7 +109,7 @@ export const assets = {
   add_icon_white,
   remove_icon_red,
   app_store,
-  alkanity,
+  alkanity1,
   play_store,
   linkedin_icon,
   facebook_icon,
@@ -163,7 +163,7 @@ export const assets = {
 
 export const menu_list = [
   {
-    menu_name: 'Momo',
+    menu_name: 'Drinking water',
     menu_image: menu_1,
   },
   {
@@ -185,7 +185,7 @@ export const menu_list = [
   },
   {
     menu_name: 'Transportation',
-    menu_image:transport,
+    menu_image: transport,
   },
   {
     menu_name: 'Packing & Forwarding',

@@ -30,7 +30,7 @@ const Alkanity = () => {
     <div className='alkanity-container'>
       <div className='alkanity-content'>
         <div className='alkanity-image'>
-          <img src={assets.alkanity} alt='Water Alkalinity Process' />
+          <img src={assets.alkanity1} alt='Water Alkalinity Process' />
         </div>
       </div>
       <div className='alkanity-text'>
