@@ -117,10 +117,10 @@ const removeFood = async (req, res) => {
       return res.json({ success: false, message: 'Food item not found' });
     }
 
-    // Delete images from Cloudinary
-    if (food.cloudinary_id && food.cloudinary_id.length > 0) {
+    // Delete images from Cloudinary - fixed field name
+    if (food.cloudinary_ids && food.cloudinary_ids.length > 0) {
       await Promise.all(
-        food.cloudinary_id.map((id) => cloudinary.uploader.destroy(id))
+        food.cloudinary_ids.map((id) => cloudinary.uploader.destroy(id))
       );
     }
 
