@@ -13,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 function App() {
   const location = useLocation();
   // Temporary fix: force localhost for admin operations
-  const url = 'http://localhost:8009';
+  const url = 'https://api.driinkoxygen.com';
   // TODO: Configure CORS on backend to allow https://admin.driinkoxygen.com
 
   const isLoginPage = location.pathname === '/';

@@ -17,6 +17,7 @@ const PORT = 8009;
 app.use(
   cors({
     origin: [
+      'https://api.driinkoxygen.com',
       'https://admin.driinkoxygen.com',
       'https://driinkoxygen.com',
       'http://localhost:5173',
